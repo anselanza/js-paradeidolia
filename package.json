@@ -1,6 +1,25 @@
 {
   "dependencies": {
     "browser-sync": "^2.13.0",
-    "gulp": "^3.9.1"
-  }
+    "gulp": "^3.9.1",
+    "p5": "^0.5.16"
+  },
+  "name": "js-paradeidolia",
+  "version": "1.0.0",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anselanza/js-paradeidolia.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anselanza/js-paradeidolia/issues"
+  },
+  "homepage": "https://github.com/anselanza/js-paradeidolia#readme",
+  "description": ""
 }
