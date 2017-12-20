@@ -73675,24 +73675,30 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 let myP5 = new _p2.default(function (p) {
 
-  const actualWidth = 800;
-  const actualHeight = 800;
+  const actualWidth = 400;
+  const actualHeight = 400;
 
   const resolution = 10;
 
-  let grid = {};
-
-  for (var row = 0; row < resolution; row++) {
-    grid[row] = {};
-    for (var col = 0; col < resolution; col++) {
-      grid[row][col] = Math.round(p.random(0, 255));
+  const randomGrid = resolution => {
+    let grid = {};
+    for (var row = 0; row < resolution; row++) {
+      grid[row] = {};
+      for (var col = 0; col < resolution; col++) {
+        grid[row][col] = Math.random() > 0.5 ? 255 : 0;
+      }
     }
-  }
+    return grid;
+  };
+
+  let grid = {};
 
   console.log('grid:', JSON.stringify(grid));
 
   p.setup = function () {
-    p.createCanvas(actualWidth, actualHeight);
+    let myCanvas = p.createCanvas(actualWidth, actualHeight);
+    myCanvas.parent('myContainer');
+    grid = randomGrid(resolution);
   };
 
   p.draw = function () {
@@ -73700,12 +73706,17 @@ let myP5 = new _p2.default(function (p) {
 
     for (var row = 0; row < resolution; row++) {
       for (var col = 0; col < resolution; col++) {
+        p.noStroke();
         p.fill(grid[col][row]);
         p.rect(col * actualWidth / resolution, row * actualHeight / resolution, actualWidth / resolution, actualHeight / resolution);
       }
     }
 
-    p.filter(p.BLUR, 10);
+    p.filter(p.BLUR, resolution * 4);
+  };
+
+  p.mousePressed = function () {
+    grid = randomGrid(resolution);
   };
 });
 },{"p5":5}],0:[function(require,module,exports) {
