@@ -1,27 +1,40 @@
 import p5 from 'p5';
 
-console.log("I'm running!");
+let myP5 = new p5( function (p) {
 
-let myP5 = new p5( function (sketch) {
+  const actualWidth = 800;
+  const actualHeight = 800;
 
-  // for red, green, and blue color values
-  let r, g, b;
+  const resolution = 10;
 
-  sketch.setup = function() {
-    console.log('setup');
-    sketch.createCanvas(720, 400);
-    // Pick colors randomly
-    r = sketch.random(255);
-    g = sketch.random(255);
-    b = sketch.random(255);
+  let grid = {};
+
+  for (var row = 0; row < resolution; row++) {
+    grid[row] = {}
+    for (var col = 0; col < resolution; col++) {
+      grid[row][col] = Math.round(p.random(0, 255));
+    }
   }
 
-  sketch.draw = function() {
-    sketch.background(127);
-    // Draw a circle
-    sketch.strokeWeight(2);
-    sketch.stroke(r, g, b);
-    sketch.fill(r, g, b, 127);
-    sketch.ellipse(360, 200, 200, 200);
+  console.log('grid:', JSON.stringify(grid));
+
+  p.setup = function() {
+    p.createCanvas(actualWidth, actualHeight);
   }
+
+  p.draw = function() {
+    p.background(127);
+
+    for (var row = 0; row < resolution; row++) {
+      for (var col = 0; col < resolution; col++) {
+        p.fill(grid[col][row]);
+        p.rect(col * actualWidth/resolution, row * actualHeight/resolution, actualWidth/resolution, actualHeight/resolution);
+      }
+    }
+
+
+    p.filter(p.BLUR, 10)
+  }
+
+
 } )
