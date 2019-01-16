@@ -65,7 +65,14 @@ require = (function (modules, cache, entry) {
 
   // Override the current require with this new one
   return newRequire;
-})({8:[function(require,module,exports) {
+})({7:[function(require,module,exports) {
+var toString = {}.toString;
+
+module.exports = Array.isArray || function (arr) {
+  return toString.call(arr) == '[object Array]';
+};
+
+},{}],8:[function(require,module,exports) {
 'use strict'
 
 exports.byteLength = byteLength
@@ -182,13 +189,6 @@ function fromByteArray (uint8) {
 }
 
 },{}],9:[function(require,module,exports) {
-var toString = {}.toString;
-
-module.exports = Array.isArray || function (arr) {
-  return toString.call(arr) == '[object Array]';
-};
-
-},{}],10:[function(require,module,exports) {
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
   var eLen = nBytes * 8 - mLen - 1
@@ -274,7 +274,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],6:[function(require,module,exports) {
+},{}],5:[function(require,module,exports) {
 
 var global = (1,eval)("this");
 /*!
@@ -2067,7 +2067,7 @@ function isnan (val) {
   return val !== val // eslint-disable-line no-self-compare
 }
 
-},{"buffer":6,"base64-js":8,"isarray":9,"ieee754":10}],7:[function(require,module,exports) {
+},{"buffer":5,"isarray":7,"base64-js":8,"ieee754":9}],6:[function(require,module,exports) {
 
 // shim for using process in browser
 var process = module.exports = {};
@@ -2254,7 +2254,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],5:[function(require,module,exports) {
+},{}],4:[function(require,module,exports) {
 var global = (1,eval)("this");
 var Buffer = require("buffer").Buffer;
 var process = require("process");
@@ -73664,7 +73664,7 @@ module.exports = p5;
 
 },{"../core/core":55,"./p5.Geometry":102}]},{},[46])(46)
 });
-},{"buffer":6,"process":7}],3:[function(require,module,exports) {
+},{"buffer":5,"process":6}],3:[function(require,module,exports) {
 "use strict";
 
 var _p = require("p5");
@@ -73719,7 +73719,7 @@ let myP5 = new _p2.default(function (p) {
     grid = randomGrid(resolution);
   };
 });
-},{"p5":5}],0:[function(require,module,exports) {
+},{"p5":4}],0:[function(require,module,exports) {
 var global = (1, eval)('this');
 var OldModule = module.bundle.Module;
 function Module() {
@@ -73737,7 +73737,7 @@ function Module() {
 module.bundle.Module = Module;
 
 if (!module.bundle.parent) {
-  var ws = new WebSocket('ws://localhost:49527/');
+  var ws = new WebSocket('ws://localhost:50103/');
   ws.onmessage = function(event) {
     var data = JSON.parse(event.data);
 
